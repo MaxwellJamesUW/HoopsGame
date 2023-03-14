@@ -383,7 +383,7 @@ function countdown() {
 }
 
 function validateName(){
-  if (input.value() != ''){
+  if (input.value().trim() != ''){
     countdown();
   } else {
     input.style('background-color',"pink");
