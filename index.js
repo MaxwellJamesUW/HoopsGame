@@ -354,7 +354,7 @@ function setupGame(){
   button.style('height', '60px');
   button.style('width','100px');
   button.style('font-size', '20px');
-  button.mousePressed(countdown);
+  button.mousePressed(validateName);
 
   greeting = createElement('h2', 'PLAYER NAME:');
   greeting.style('text-align','center');
@@ -380,4 +380,12 @@ function countdown() {
   countStart = millis();
   loop();
 
+}
+
+function validateName(){
+  if (input.value() != ''){
+    countdown();
+  } else {
+    input.style('background-color',"pink");
+  }
 }
