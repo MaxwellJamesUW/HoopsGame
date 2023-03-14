@@ -54,7 +54,7 @@ let gameState = 0;
 
 let startTime = 0;
 
-let input, button, greeting;
+let input, button, greeting, title;
 
 window.preload = () => {
   ballimg1 = loadImage("ball2.png");
@@ -63,15 +63,17 @@ window.preload = () => {
   ballAngry = loadImage('angry.png');
   ballTired = loadImage('tired.png');
   ballScared = loadImage('tooFast.png');
+
+  title = loadImage('HoopsTitle.png');
 }
 
 window.setup = () => {
-  /*
   cW = windowWidth;
   cH = windowHeight;
-  */
+  /*
  cW = 600;
  cH = 800;
+ */
   new Canvas(cW, cH);
   world.gravity.y = 10;
 
@@ -136,7 +138,8 @@ window.draw = () => {
   if(gameState == 0){
     fill(245);
     rectMode(CENTER);
-    rect(cW/2, cH/2 + 50, 500, 600, 0,0,8,8);
+    rect(cW/2, cH/2 + 50, 4*cW/5, 4*cW/5, 8,8,8,8);
+    image(title, cW/5, 2*cH/7, 3*cW/5, cH/6);
   }
   if(gameState == 1){
     if((millis() - countStart)/1000 < 3){
@@ -269,7 +272,7 @@ window.keyPressed = () => {
 
 function newHoop() {
   let hx = random(100, cW - 100);
-  let hy = random(150, 350);
+  let hy = random(200, 350);
   hoopl = new Sprite(hx, hy, 8, 38);
   hoopl.rotation = -13;
   hoopl.collider = 'static';
@@ -282,6 +285,9 @@ function newHoop() {
   hoopl.stroke = color(255, 220, 250);
   hoopr.color = color(227, 19, 102);
   hoopr.stroke = color(255,220,250);
+
+  hoopl.bounciness = 0;
+  hoopr.bounciness = 0;
 
 }
 
@@ -350,11 +356,12 @@ function setupGame(){
   button.style('font-size', '20px');
   button.mousePressed(countdown);
 
-  greeting = createElement('h2', 'what is your name?');
+  greeting = createElement('h2', 'PLAYER NAME:');
   greeting.style('text-align','center');
   greeting.style('display', 'block');
   greeting.style('font-family','Verdana, Arial, sans-serif');
   greeting.position(cW/2 - 130, cH/2 + 100);
+
   noLoop();
 }
 
