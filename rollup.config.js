@@ -9,7 +9,8 @@ export default {
   plugins: [
     copy({
       targets: [{ src: "index.html", dest: "dist" }, { src: "theBall.png", dest: "dist" }, 
-        { src: "ball2.png", dest: "dist" }, { src: "ball3.png", dest: "dist" },{ src: "styles.css", dest: "dist" }],
+        { src: "ball2.png", dest: "dist" }, { src: "ball3.png", dest: "dist" },{ src: "styles.css", dest: "dist" },
+        { src: "angry.png", dest: "dist" },{ src: "tired.png", dest: "dist" },{ src: "tooFast.png", dest: "dist" }],
     }),
     nodeResolve(),
   ],
