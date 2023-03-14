@@ -260,7 +260,7 @@ window.mouseReleased = () => {
 }
 
 window.keyPressed = () => {
-  if(key == "r"){
+  if(key == "Escape"){
     console.log("R PRESSED");
     location.reload();
   }
