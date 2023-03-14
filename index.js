@@ -15281,7 +15281,15 @@ let fscore = 0;
 let ended = false;
 let playerName = "Max";
 let ballimg1, ballimg2, ballimg3;
+let countStart;
+
+//gameStates:
+// 0 : Startup
+// 1 : Countdown
+// 2 : Playing
+// 3 : Endgame
 let gameState = 0;
+
 let startTime = 0;
 
 let input, button, greeting;
@@ -15362,6 +15370,18 @@ window.draw = () => {
     rectMode(CENTER);
     rect(cW/2, cH/2 + 50, 500, 600, 0,0,8,8);
   }
+  if(gameState == 1){
+    if((millis() - countStart)/1000 < 3){
+      let countdownSizeMod = ((4-(millis() - countStart)/1000)) % 1;
+      textAlign(CENTER);
+      textSize(111 * countdownSizeMod);
+      strokeWeight(0);
+      fill(255);
+      text(int(4 - ((millis() - countStart)/1000)), cW/2, cH/2 - 30);
+    } else {
+      startGame();
+    }
+  }
 
   if(mouse.pressing()) {
     let power = dist(clickx1, clicky1, mouse.x, mouse.y);
@@ -15428,8 +15448,10 @@ window.draw = () => {
       text('You scored ' + fscore + " baskets\n in 60 seconds!", cW/2, cH/2);
     }
   } else {
-    textSize(32);
-    text('Time left: ' + (60 - secs), cW - 200, 55);
+    if(gameState == 2){
+      textSize(32);
+      text('Time left: ' + (60 - secs), cW - 200, 55);
+    }
   }
 };
 
@@ -15443,7 +15465,7 @@ window.mousePressed = () => {
 //onmouseup
 window.mouseReleased = () => {
   //if game is playing, shoot the ball and increment shots
-  if(gameState == 1){
+  if(gameState == 2){
     clickx2 = mouseX;
     clicky2 = mouseY;
     ball.vel.x += (clickx1 - clickx2) / velCalmer;
@@ -15519,15 +15541,10 @@ function displayScores(){
 }
 
 function startGame(){
-  console.log(input.value());
-  playerName = input.value();
+  
   startTime = millis();
-  input.remove();
-  greeting.remove();
-  button.remove();
-  gameState = 1;
+  gameState = 2;
 
-  loop();
 }
 
 function setupGame(){
@@ -15546,7 +15563,7 @@ function setupGame(){
   button.style('height', '60px');
   button.style('width','100px');
   button.style('font-size', '20px');
-  button.mousePressed(startGame);
+  button.mousePressed(countdown);
 
   greeting = createElement('h2', 'what is your name?');
   greeting.style('text-align','center');
@@ -15554,4 +15571,21 @@ function setupGame(){
   greeting.style('font-family','Verdana, Arial, sans-serif');
   greeting.position(cW/2 - 130, cH/2 + 100);
   noLoop();
+}
+
+function countdown() {
+  gameState = 1;
+
+  //save player name
+  console.log(input.value());
+  playerName = input.value();
+
+  //remove start screen overlay
+  input.remove();
+  greeting.remove();
+  button.remove();
+
+  countStart = millis();
+  loop();
+
 }
