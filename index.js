@@ -41,7 +41,8 @@ let score = 0;
 let fscore = 0;
 let ended = false;
 let playerName = "Max";
-let ballimg1, ballimg2, ballimg3;
+let ballimg1, ballimg2, ballimg3, ballTired, ballAngry, ballScared;
+let ballAni = 0;
 let countStart;
 
 //gameStates:
@@ -59,6 +60,9 @@ window.preload = () => {
   ballimg1 = loadImage("ball2.png");
   ballimg2 = loadImage("theBall.png");
   ballimg3 = loadImage('ball3.png');
+  ballAngry = loadImage('angry.png');
+  ballTired = loadImage('tired.png');
+  ballScared = loadImage('tooFast.png');
 }
 
 window.setup = () => {
@@ -78,6 +82,9 @@ window.setup = () => {
   ball.addAni('distressed', ballimg1);
   ball.addAni('baseline', ballimg2);
   ball.addAni('done', ballimg3);
+  ball.addAni('tired', ballTired);
+  ball.addAni('scared', ballScared);
+  ball.addAni('angry', ballAngry);
   
   floor = new Sprite();
   floor.y = cH-5;
@@ -150,26 +157,41 @@ window.draw = () => {
     if(power > 450){
       stroke(227, 19, 102);
     } else {
-    if(power > 325){
-      stroke(255, 65, 77);
-    } else {
-    if(power > 150){
-      stroke(255, 134, 48);
-    } else {
-    stroke(255, 203, 19);
+      if(power > 325){
+        stroke(255, 65, 77);
+      } else {
+        if(power > 150){
+          stroke(255, 134, 48);
+        } else {
+          stroke(255, 203, 19);
+        }
+      }
     }
-  }
-}
 
     line(clickx1, clicky1, mouse.x, mouse.y);
 
     ball.changeAni('distressed');
   } else {
-    ball.changeAni('baseline');
-  }
+    switch (ballAni) {
+      case 0:
+        ball.changeAni('baseline');
+        break;
+      case 1:
+        ball.changeAni('angry');
+        break;
+      case 2:
+        ball.changeAni('tired');
+        break;
+      }
+    }
   
   if((ball.colliding(hoopl) > 5) && (ball.colliding(hoopr) > 5)){
     ball.changeAni('done');
+  }
+
+  //if ball velocity is fast enough, do scared face
+  if (ball.velocity.mag() > 10) {
+    ball.changeAni('scared');
   }
 
   //score condition
@@ -233,6 +255,8 @@ window.mouseReleased = () => {
     ball.vel.y += (clicky1 - clicky2) / velCalmer;
     shots += 1;
   }
+  let randAni = random(3);
+  ballAni = int(randAni);
 }
 
 window.keyPressed = () => {
