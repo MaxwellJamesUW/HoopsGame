@@ -15305,12 +15305,12 @@ window.preload = () => {
 };
 
 window.setup = () => {
-  /*
   cW = windowWidth;
   cH = windowHeight;
-  */
+  /*
  cW = 600;
  cH = 800;
+ */
   new Canvas(cW, cH);
   world.gravity.y = 10;
 
@@ -15499,7 +15499,7 @@ window.mouseReleased = () => {
 };
 
 window.keyPressed = () => {
-  if(key == "r"){
+  if(key == "Escape"){
     console.log("R PRESSED");
     location.reload();
   }
@@ -15521,6 +15521,9 @@ function newHoop() {
   hoopl.stroke = color(255, 220, 250);
   hoopr.color = color(227, 19, 102);
   hoopr.stroke = color(255,220,250);
+
+  hoopl.bounciness = 0;
+  hoopr.bounciness = 0;
 
 }
 
