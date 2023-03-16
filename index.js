@@ -15279,7 +15279,7 @@ let fshots = 0;
 let score = 0;
 let fscore = 0;
 let ended = false;
-let playerName = "Max";
+let playerName = "PlayerOne";
 let ballimg1, ballimg2, ballimg3, ballTired, ballAngry, ballScared;
 let ballAni = 0;
 let countStart;
@@ -15293,7 +15293,8 @@ let gameState = 0;
 
 let startTime = 0;
 
-let input, button, greeting, title;
+let input, button, greeting, title, bgTitle;
+var sounds = [];
 
 window.preload = () => {
   ballimg1 = loadImage("ball2.png");
@@ -15304,6 +15305,15 @@ window.preload = () => {
   ballScared = loadImage('tooFast.png');
 
   title = loadImage('HoopsTitle.png');
+  bgTitle = loadImage('bgTitle.png');
+  
+  loadSound('oof.mp3');
+  loadSound('ouch.mp3');
+  loadSound('uhhg.mp3');
+  let oof3 = loadSound('ough.mp3');
+  
+  sounds.push(oof3);
+  
 };
 
 window.setup = () => {
@@ -15369,6 +15379,7 @@ window.setup = () => {
 window.draw = () => {
   clear();
   background(20);
+  image(bgTitle, cW/5, 2*cH/7, 3*cW/5, cH/6);
 
   let secs = (millis() - startTime) / 1000;
   secs = int(secs);
@@ -15377,7 +15388,7 @@ window.draw = () => {
   if(gameState == 0){
     fill(245);
     rectMode(CENTER);
-    rect(cW/2, cH/2 + 50, 4*cW/5, 4*cW/5, 8,8,8,8);
+    rect(cW/2, 9*cH/13, cW/2, cW/4, 8,8,8,8);
     image(title, cW/5, 2*cH/7, 3*cW/5, cH/6);
   }
   if(gameState == 1){
@@ -15448,6 +15459,15 @@ window.draw = () => {
     hoopr.remove();
     newHoop();
   }
+
+
+  //do sound effects on collision with walls or top
+  if(ball.colliding(lwall) || ball.colliding(rwall) || ball.colliding(topper)){
+    let randSound = int(random(sounds.length));
+    sounds[randSound].play();
+  }
+
+
   textAlign(LEFT);
   textSize(40);
   strokeWeight(0);
@@ -15585,21 +15605,28 @@ function setupGame(){
   gameState = 0;
 
   input = createInput();
-  input.position(cW/2 - 135, cH - 200);
+  input.size(200);
+  
   input.style('height', '60px');
+  input.style('font-size', '18pt');
 
   button = createButton('start');
-  button.position(input.x + input.width, cH - 200);
+  
   button.style('height', '60px');
   button.style('width','100px');
   button.style('font-size', '20px');
   button.mousePressed(validateName);
 
+  input.position(cW/2 - (input.width + button.width)/2, cH - 260);
+  button.position(input.x + input.width, cH - 260);
+
   greeting = createElement('h2', 'PLAYER NAME:');
   greeting.style('text-align','center');
-  greeting.style('display', 'block');
+  //greeting.style('display', 'block');
+  greeting.style('width','250px');
   greeting.style('font-family','Verdana, Arial, sans-serif');
-  greeting.position(cW/2 - 130, cH/2 + 100);
+  greeting.position(cW/2 - 125, cH - 330);
+  console.log(greeting.width);
 
   noLoop();
 }
