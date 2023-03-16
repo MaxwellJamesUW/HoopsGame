@@ -15416,17 +15416,16 @@ window.setup = () => {
 window.draw = () => {
   clear();
   background(20);
-  image(bgTitle, cW/5, 2*cH/7, 3*cW/5, cH/6);
-
+  if(!ended){
+    image(bgTitle, cW/2 - bgTitle.width/2, 2*cH/7);
+  }
   let secs = (millis() - startTime) / 1000;
   secs = int(secs);
 
   //backdrop for the start screen
   if(gameState == 0){
     fill(245);
-    rectMode(CENTER);
-    rect(cW/2, 9*cH/13, cW/2, cW/4, 8,8,8,8);
-    image(title, cW/5, 2*cH/7, 3*cW/5, cH/6);
+    image(title, cW/2 - bgTitle.width/2, 2*cH/7);
   }
   if(gameState == 1){
     if((millis() - countStart)/1000 < 3){
@@ -15497,7 +15496,6 @@ window.draw = () => {
     newHoop();
   }
 
-
   //do sound effects on collision with walls or top
   if(ball.colliding(lwall) || ball.colliding(rwall) || ball.colliding(topper)){
     let randSound = int(random(sounds.length));
@@ -15506,11 +15504,11 @@ window.draw = () => {
 
 
   textAlign(LEFT);
-  textSize(40);
+  textSize(28);
   strokeWeight(0);
-  text('Score: ' + score, 20, 55);
-  textSize(32);
-  text('Shots: ' + shots, 20, 90);
+  text('Score: ' + score, 20, 45);
+  textSize(22);
+  text('Shots: ' + shots, 20, 75);
 
   //end condition!
   if (secs >= 60){
@@ -15533,8 +15531,8 @@ window.draw = () => {
     text('Press Esc to play again', cW/2, cH - 60);
   } else {
     if(gameState == 2){
-      textSize(32);
-      text('Time left: ' + (60 - secs), cW - 200, 55);
+      textSize(28);
+      text('Time left: ' + (60 - secs), cW - 175, 45);
     }
   }
 };
@@ -15668,8 +15666,8 @@ function setupGame(){
   //greeting.style('display', 'block');
   greeting.style('width','250px');
   greeting.style('font-family','Verdana, Arial, sans-serif');
-  greeting.position(cW/2 - 125, cH - 330);
-  console.log(greeting.width);
+  greeting.position(cW/2 - greeting.width/2, cH - 330);
+  greeting.style('color','white');
 
   noLoop();
 }
@@ -15678,7 +15676,6 @@ function countdown() {
   gameState = 1;
 
   //save player name
-  console.log(input.value());
   playerName = input.value();
 
   //remove start screen overlay
