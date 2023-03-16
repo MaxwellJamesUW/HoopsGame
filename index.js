@@ -2483,7 +2483,7 @@ function ia$1(a,b){var c=Array.prototype.slice.call(arguments,1);return function
 function na(a,b){for(let c=1;c<arguments.length;c++){const d=arguments[c];if(ba(d)){const e=a.length||0,f=d.length||0;a.length=e+f;for(let h=0;h<f;h++)a[e+h]=d[h];}else a.push(d);}}function w(a,b){this.type=a;this.g=this.target=b;this.defaultPrevented=!1;}w.prototype.h=function(){this.defaultPrevented=!0;};var oa=function(){if(!l.addEventListener||!Object.defineProperty)return !1;var a=!1,b=Object.defineProperty({},"passive",{get:function(){a=!0;}});try{l.addEventListener("test",aa,b),l.removeEventListener("test",aa,b);}catch(c){}return a}();function pa$1(a){return /^[\s\xa0]*$/.test(a)}var qa$1=String.prototype.trim?function(a){return a.trim()}:function(a){return /^[\s\xa0]*([\s\S]*?)[\s\xa0]*$/.exec(a)[1]};function ra$1(a,b){return a<b?-1:a>b?1:0}function sa(){var a=l.navigator;return a&&(a=a.userAgent)?a:""}function x$1(a){return -1!=sa().indexOf(a)}function ta(a){ta[" "](a);return a}ta[" "]=aa;function ua$1(a){var b=va$1;return Object.prototype.hasOwnProperty.call(b,9)?b[9]:b[9]=a(9)}var wa=x$1("Opera"),y=x$1("Trident")||x$1("MSIE"),xa$1=x$1("Edge"),ya$1=xa$1||y,za$1=x$1("Gecko")&&!(-1!=sa().toLowerCase().indexOf("webkit")&&!x$1("Edge"))&&!(x$1("Trident")||x$1("MSIE"))&&!x$1("Edge"),Aa=-1!=sa().toLowerCase().indexOf("webkit")&&!x$1("Edge");function Ba$1(){var a=l.document;return a?a.documentMode:void 0}var Ea;
 a:{var Fa$1="",Ga$1=function(){var a=sa();if(za$1)return /rv:([^\);]+)(\)|;)/.exec(a);if(xa$1)return /Edge\/([\d\.]+)/.exec(a);if(y)return /\b(?:MSIE|rv)[: ]([^\);]+)(\)|;)/.exec(a);if(Aa)return /WebKit\/(\S+)/.exec(a);if(wa)return /(?:Version)[ \/]?(\S+)/.exec(a)}();Ga$1&&(Fa$1=Ga$1?Ga$1[1]:"");if(y){var Ha$1=Ba$1();if(null!=Ha$1&&Ha$1>parseFloat(Fa$1)){Ea=String(Ha$1);break a}}Ea=Fa$1;}var va$1={};
 function Ia$1(){return ua$1(function(){let a=0;const b=qa$1(String(Ea)).split("."),c=qa$1("9").split("."),d=Math.max(b.length,c.length);for(let h=0;0==a&&h<d;h++){var e=b[h]||"",f=c[h]||"";do{e=/(\d*)(\D*)(.*)/.exec(e)||["","","",""];f=/(\d*)(\D*)(.*)/.exec(f)||["","","",""];if(0==e[0].length&&0==f[0].length)break;a=ra$1(0==e[1].length?0:parseInt(e[1],10),0==f[1].length?0:parseInt(f[1],10))||ra$1(0==e[2].length,0==f[2].length)||ra$1(e[2],f[2]);e=e[3];f=f[3];}while(0==a)}return 0<=a})}var Ja$1;
-if(l.document&&y){var Ka=Ba$1();Ja$1=Ka?Ka:parseInt(Ea,10)||void 0;}else Ja$1=void 0;var La$1=Ja$1;function z$1(a,b){w.call(this,a?a.type:"");this.relatedTarget=this.g=this.target=null;this.button=this.screenY=this.screenX=this.clientY=this.clientX=0;this.key="";this.metaKey=this.shiftKey=this.altKey=this.ctrlKey=!1;this.state=null;this.pointerId=0;this.pointerType="";this.i=null;if(a){var c=this.type=a.type,d=a.changedTouches&&a.changedTouches.length?a.changedTouches[0]:null;this.target=a.target||a.srcElement;this.g=b;if(b=a.relatedTarget){if(za$1){a:{try{ta(b.nodeName);var e=!0;break a}catch(f){}e=
+if(l.document&&y){var Ka$1=Ba$1();Ja$1=Ka$1?Ka$1:parseInt(Ea,10)||void 0;}else Ja$1=void 0;var La$1=Ja$1;function z$1(a,b){w.call(this,a?a.type:"");this.relatedTarget=this.g=this.target=null;this.button=this.screenY=this.screenX=this.clientY=this.clientX=0;this.key="";this.metaKey=this.shiftKey=this.altKey=this.ctrlKey=!1;this.state=null;this.pointerId=0;this.pointerType="";this.i=null;if(a){var c=this.type=a.type,d=a.changedTouches&&a.changedTouches.length?a.changedTouches[0]:null;this.target=a.target||a.srcElement;this.g=b;if(b=a.relatedTarget){if(za$1){a:{try{ta(b.nodeName);var e=!0;break a}catch(f){}e=
 !1;}e||(b=null);}}else "mouseover"==c?b=a.fromElement:"mouseout"==c&&(b=a.toElement);this.relatedTarget=b;d?(this.clientX=void 0!==d.clientX?d.clientX:d.pageX,this.clientY=void 0!==d.clientY?d.clientY:d.pageY,this.screenX=d.screenX||0,this.screenY=d.screenY||0):(this.clientX=void 0!==a.clientX?a.clientX:a.pageX,this.clientY=void 0!==a.clientY?a.clientY:a.pageY,this.screenX=a.screenX||0,this.screenY=a.screenY||0);this.button=a.button;this.key=a.key||"";this.ctrlKey=a.ctrlKey;this.altKey=a.altKey;this.shiftKey=
 a.shiftKey;this.metaKey=a.metaKey;this.pointerId=a.pointerId||0;this.pointerType="string"===typeof a.pointerType?a.pointerType:Ma$1[a.pointerType]||"";this.state=a.state;this.i=a;a.defaultPrevented&&z$1.X.h.call(this);}}t(z$1,w);var Ma$1={2:"touch",3:"pen",4:"mouse"};z$1.prototype.h=function(){z$1.X.h.call(this);var a=this.i;a.preventDefault?a.preventDefault():a.returnValue=!1;};var A="closure_listenable_"+(1E6*Math.random()|0);var Na=0;function Oa(a,b,c,d,e){this.listener=a;this.proxy=null;this.src=b;this.type=c;this.capture=!!d;this.ha=e;this.key=++Na;this.ba=this.ea=!1;}function Pa(a){a.ba=!0;a.listener=null;a.proxy=null;a.src=null;a.ha=null;}function Qa$1(a,b,c){for(const d in a)b.call(c,a[d],d,a);}function Ra$1(a){const b={};for(const c in a)b[c]=a[c];return b}const Sa="constructor hasOwnProperty isPrototypeOf propertyIsEnumerable toLocaleString toString valueOf".split(" ");function Ta(a,b){let c,d;for(let e=1;e<arguments.length;e++){d=arguments[e];for(c in d)a[c]=d[c];for(let f=0;f<Sa.length;f++)c=Sa[f],Object.prototype.hasOwnProperty.call(d,c)&&(a[c]=d[c]);}}function Ua$1(a){this.src=a;this.g={};this.h=0;}Ua$1.prototype.add=function(a,b,c,d,e){var f=a.toString();a=this.g[f];a||(a=this.g[f]=[],this.h++);var h=Va(a,b,d,e);-1<h?(b=a[h],c||(b.ea=!1)):(b=new Oa(b,this.src,f,!!d,e),b.ea=c,a.push(b));return b};function Wa$1(a,b){var c=b.type;if(c in a.g){var d=a.g[c],e=la(d,b),f;(f=0<=e)&&Array.prototype.splice.call(d,e,1);f&&(Pa(b),0==a.g[c].length&&(delete a.g[c],a.h--));}}
 function Va(a,b,c,d){for(var e=0;e<a.length;++e){var f=a[e];if(!f.ba&&f.listener==b&&f.capture==!!c&&f.ha==d)return e}return -1}var Xa="closure_lm_"+(1E6*Math.random()|0),Ya={};function $a$1(a,b,c,d,e){if(d&&d.once)return ab(a,b,c,d,e);if(Array.isArray(b)){for(var f=0;f<b.length;f++)$a$1(a,b[f],c,d,e);return null}c=bb(c);return a&&a[A]?a.N(b,c,p(d)?!!d.capture:!!d,e):cb(a,b,c,!1,d,e)}
@@ -13292,6 +13292,10 @@ e) {
     return t;
 }
 
+function Ka(t, e) {
+    if (e <= 0) throw new L(B.INVALID_ARGUMENT, `Function ${t}() requires a positive number, but it was: ${e}.`);
+}
+
 /**
  * @license
  * Copyright 2020 Google LLC
@@ -14771,6 +14775,39 @@ function ol(t, e, ...n) {
     return fl._create(s, n);
 }
 
+/**
+ * A `QueryLimitConstraint` is used to limit the number of documents returned by
+ * a Firestore query.
+ * `QueryLimitConstraint`s are created by invoking {@link limit} or
+ * {@link limitToLast} and can then be passed to {@link query} to create a new
+ * query instance that also contains this `QueryLimitConstraint`.
+ */ class _l extends rl {
+    /**
+     * @internal
+     */
+    constructor(
+    /** The type of this query constraint */
+    t, e, n) {
+        super(), this.type = t, this._limit = e, this._limitType = n;
+    }
+    static _create(t, e, n) {
+        return new _l(t, e, n);
+    }
+    _apply(t) {
+        return new Wa(t.firestore, t.converter, An(t._query, this._limit, this._limitType));
+    }
+}
+
+/**
+ * Creates a {@link QueryLimitConstraint} that only returns the first matching
+ * documents.
+ *
+ * @param limit - The maximum number of items to return.
+ * @returns The created {@link QueryLimitConstraint}.
+ */ function wl(t) {
+    return Ka("limit", t), _l._create("limit", t, "F" /* LimitType.First */);
+}
+
 function Rl(t, e, n) {
     if ("string" == typeof (n = getModularInstance(n))) {
         if ("" === n) throw new L(B.INVALID_ARGUMENT, "Invalid query. When querying with documentId(), you must provide a valid document ID, but it was an empty string.");
@@ -15487,11 +15524,13 @@ window.draw = () => {
         
     }
     displayScores();
+    textAlign(CENTER);
     if (fscore === 1){
-      text('You scored just ' + fscore + " basket\n in 60 seconds!", cW/2, cH/2);
+      text('You scored just ' + fscore + " basket\n in 60 seconds!", cW/2, 3*cH/4);
     } else {
-      text('You scored ' + fscore + " baskets\n in 60 seconds!", cW/2, cH/2);
+      text('You scored ' + fscore + " baskets\n in 60 seconds!", cW/2, 3*cH/4);
     }
+    text('Press Esc to play again', cW/2, cH - 60);
   } else {
     if(gameState == 2){
       textSize(32);
@@ -15567,7 +15606,7 @@ async function getScores() {
     hiScores = [];
   
     const querySnapshot = await zl(
-      ol(dbRef, dl("score", "desc"))
+      ol(dbRef, dl("score", "desc"), dl("shots"), wl(20))
     );
     querySnapshot.forEach((doc) => {
       let msgData = doc.data();
@@ -15580,12 +15619,16 @@ async function getScores() {
   
 function displayScores(){
   textAlign(RIGHT);
+  textSize(30);
+  text("HIGH SCORES", cW - 20, 38);
   textSize(20);
-  text("HIGH SCORES", cW - 20, 30);
-  text("Name\tScore\tShots", cW - 20, 50);
-  let yVal = 55;
+  text("Name\tScore \tShots", cW - 20, 62);
+  let yVal = 87;
   hiScores.forEach(ele => {
-    text(ele.uname + '\t\t\t\t' + ele.score + '\t\t\t\t' + ele.shots, cW - 30, yVal += 20);
+    text(ele.shots, cW - 20, yVal);
+    text(ele.score, cW - 90, yVal);
+    text(ele.uname, cW - 150, yVal);
+    yVal += 22;
     
   });
 }
